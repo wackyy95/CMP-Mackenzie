@@ -48,8 +48,8 @@ namespace CMP1903M_A01_2223
                 pack.Clear();
                 pack = cardsorted;    
             }
-         
-            if(typeOfShuffle == 2)
+
+            if (typeOfShuffle == 2)
             {
                 int fullshuffledeck1 = 0;
                 int fullshuffledeck2 = 0;
@@ -95,6 +95,14 @@ namespace CMP1903M_A01_2223
                 pack.Clear();
                 pack = shuffledDeck;
             }
+
+                if (typeOfShuffle == 3)
+                {
+                    Console.WriteLine("no shuffle was performed");
+                Console.WriteLine("the cards are in the right order");
+                }
+              
+            
          }
 
         //the method deal allows the user to deal one card at a time
