@@ -23,8 +23,10 @@ namespace CMP1903M_A01_2223
 
             set
             {
-
-                _value = value;
+                if (_value <= 14)
+                {
+                    _value = value + 1;
+                }
             }
         }
         
@@ -37,8 +39,10 @@ namespace CMP1903M_A01_2223
 
             set
             {
-
-                _suits = value;
+                if (_suits <= 4)
+                {
+                    _suits = value + 1;
+                }
             }
         
         }
