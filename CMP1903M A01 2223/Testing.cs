@@ -42,10 +42,8 @@ namespace CMP1903M_A01_2223
                     Console.WriteLine("Please pick from the options provided");
 
                 }
-
                 while (stopdealing == false)
                 {
-
                     Console.WriteLine("\n");
                     Console.WriteLine("Please pick a following option");
                     Console.WriteLine("1: Deal one card");
@@ -55,6 +53,40 @@ namespace CMP1903M_A01_2223
                     if (userinp2 == 1)
                     {
                        Pack.deal();
+                        bool dealtloop = false;
+                        int amountleft = 1;
+
+                        while (!dealtloop)
+                        { 
+                         if (amountleft < 52)
+                            {
+                                Console.WriteLine("would you like to deal a card");
+                                string dealanother = Console.ReadLine();
+                                if (dealanother == "yes" || dealanother == "Yes")
+                                {
+                                    Card returns = Pack.deal();
+                                    var value = returns.Value.ToString();
+                                    var suits = returns.Suit.ToString();
+                                    Console.WriteLine($"your suit is {suits[0]} your value is {value}  ");
+                                    amountleft++;
+                                }
+                                else if (dealanother == "no" || dealanother == "No")
+                                {
+                                    dealtloop = true;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("the option ypu picked is not valid please choose again");
+                                    dealtloop = true;
+                                }
+                                
+                            }
+                            else
+                            {
+                                Console.WriteLine("All cards have been dealt");
+                                dealtloop = true;
+                            }
+                        }
 
                     }
                     else if (userinp2 == 2)
@@ -63,21 +95,16 @@ namespace CMP1903M_A01_2223
                         Console.WriteLine("Please enter an amount of cards you would liked to be dealed");
                         int amountofcardealt = int.Parse(Console.ReadLine());
                         Pack.dealCard(amountofcardealt);
-
                     }
                     else if (userinp2 == 3)
                     {
                         stopdealing = true;
+                        Console.WriteLine("\n");
                     }
-                   
                     else
                     {
                         Console.WriteLine("The option you picked isnt avaliable");
-
                     }
-
-
-
                 }
 
             }

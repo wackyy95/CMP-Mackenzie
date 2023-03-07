@@ -21,7 +21,6 @@ namespace CMP1903M_A01_2223
             {
                 return _value;
             }
-
             set
             {
                 if (_value <= 13)
@@ -30,14 +29,12 @@ namespace CMP1903M_A01_2223
                 }
             }
         }
-        
         public int Suit
         {
             get
             {
                 return _suits;
             }
-
             set
             {
                 if (_suits <= 4)
