@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace CMP1903M_A01_2223
 {
-   
+    //the testing class runs the whole code 
     internal class Testing
-    {//the testing class runs the whole code and is what allows the user to select the type of shuffle they want out of the fisher-yates shuffle or the riffle shuffle. it also allows the user 
+    {
+     // it is what allows the user to select the type of shuffle they want out of the fisher-yates shuffle or the riffle shuffle. it also allows the user 
      //to deal one card at a time or multiple cards by calling classes from the pack class
      // it also allows them to do no shuffle or quit the programs
         public Testing()

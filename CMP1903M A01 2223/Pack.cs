@@ -50,15 +50,15 @@ namespace CMP1903M_A01_2223
             if (typeOfShuffle == 1)
             {
                
-                int num = 0;
+                int rannum = 0;
                 List<Card> cardsorted = new List<Card>();
-                for (int i = 0; i < 52; i++)
+                for (int x = 0; x < 52; x++)
                 {
-                    num = rnd.Next(0, Pack.pack.Count);
+                    rannum = rnd.Next(0, Pack.pack.Count);
 
-                    cardsorted.Add(pack[num]);
+                    cardsorted.Add(pack[rannum]);
 
-                    pack.Remove(pack[num]);
+                    pack.Remove(pack[rannum]);
 
                 }
                 pack.Clear();
@@ -69,43 +69,43 @@ namespace CMP1903M_A01_2223
          
             if(typeOfShuffle == 2)
             {
-                int shuffledeck1 = 0;
-                int shuffledeck2 = 0;
+                int fullshuffledeck1 = 0;
+                int fullshuffledeck2 = 0;
                 int randomnum1 = 0;
                 int randomnum2 = 0;
-                List<Card> cards2 = new List<Card>();
+                List<Card> pack2 = new List<Card>();
                 List<Card> shuffledDeck = new List<Card>();
-                for (int y = 0; y < 26; y++)
+                for (int splitdeck = 0; splitdeck < 26; splitdeck++)
                 {
-                    cards2.Add(pack[0]);
+                    pack2.Add(pack[0]);
                     pack.Remove(pack[0]);
                 }
-                while (shuffledeck1 < 26 || shuffledeck2 < 26)
+                while (fullshuffledeck1 < 26 || fullshuffledeck2 < 26)
                 {
                     randomnum1 = rnd.Next(0, 3);
                     randomnum2 = rnd.Next(0, 3);
 
-                    if (shuffledeck1 < 26)
+                    if (fullshuffledeck1 < 26)
                     {
-                        for (int z = 0; z < randomnum1; z++)
+                        for (int cardcount = 0; cardcount < randomnum1; cardcount++)
                         {
-                            if (shuffledeck1 + randomnum1 <= 26)
+                            if (fullshuffledeck1 + randomnum1 <= 26)
                             {
                                 shuffledDeck.Add(pack[0]);
                                 pack.Remove(pack[0]);
-                                shuffledeck1++;
+                                fullshuffledeck1++;
                             }
                         }
                     }
-                    if (shuffledeck2 < 26)
+                    if (fullshuffledeck2 < 26)
                     {
-                        for (int p = 0; p < randomnum2; p++)
+                        for (int deckcount = 0; deckcount < randomnum2; deckcount++)
                         {
-                            if (shuffledeck2 + randomnum2 <= 26)
+                            if (fullshuffledeck2 + randomnum2 <= 26)
                             {
-                                shuffledDeck.Add(cards2[0]);
-                                cards2.Remove(cards2[0]);
-                                shuffledeck2++;
+                                shuffledDeck.Add(pack2[0]);
+                                pack2.Remove(pack2[0]);
+                                fullshuffledeck2++;
                             }
 
 
@@ -125,10 +125,10 @@ namespace CMP1903M_A01_2223
             Console.WriteLine($"your suit is {pack[0].Suit} your value is {pack[0].Value}  ");
             pack.Remove(pack[0]);
 
-            bool endloop = false;
+            bool dealtloop = false;
             int amountleft = 1;
             
-                while (!endloop)
+                while (!dealtloop)
                 {
                     if (amountleft < 52)
                     {
@@ -144,18 +144,18 @@ namespace CMP1903M_A01_2223
                         }
                         else if (dealanother == "no" || dealanother == "No")
                         {
-                            endloop = true;
+                            dealtloop = true;
                         }
                         else
                         {
                             Console.WriteLine("the option ypu picked is not valid please choose again");
-                            endloop = true;
+                            dealtloop = true;
                         }
                     }
                 else
                 {
                     Console.WriteLine("All cards have been dealt");
-                    endloop = true;
+                    dealtloop = true;
                 }
             }
             
@@ -166,46 +166,55 @@ namespace CMP1903M_A01_2223
         //it allows the user to do multiple deals of any amount of cards and will stop when the user asks or when the cards run out
         public static List<Card> dealCard(int amount)
         {
+            
             //Deals the number of cards specified by 'amount'
-            bool endloop2 = false;
+            bool dealtloop = false;
             int cardcount = 0;
-            while (!endloop2)
+            while (!dealtloop)
             {
-                
-                if (cardcount < 52) 
+                if (amount < 53)
                 {
-                    for (int dealtcards = 0; dealtcards < amount; dealtcards++)
+                    if (cardcount < 52)
                     {
-                        Console.WriteLine($"your suit is {pack[0].Suit} your value is {pack[0].Value}  ");
-                        pack.Remove(pack[0]);
-                        cardcount++;
-                    }
-                    Console.WriteLine("would you like to deal another card");
-                    string dealmore = Console.ReadLine();
+                        for (int dealtcards = 0; dealtcards < amount; dealtcards++)
+                        {
+                            Console.WriteLine($"your suit is {pack[0].Suit} your value is {pack[0].Value}  ");
+                            pack.Remove(pack[0]);
+                            cardcount++;
+                        }
+                        Console.WriteLine("would you like to deal another card");
+                        string dealmore = Console.ReadLine();
 
 
-                    if (dealmore == "yes" || dealmore == "Yes")
-                    {
-                        Console.WriteLine("how many more cards would you like to deal");
-                        amount = int.Parse(Console.ReadLine());
-                    }
-                    else if (dealmore == "no" || dealmore == "No")
-                    {
-                        endloop2 = true;
+                        if (dealmore == "yes" || dealmore == "Yes")
+                        {
+                            Console.WriteLine("how many more cards would you like to deal");
+                            amount = int.Parse(Console.ReadLine());
+                        }
+                        else if (dealmore == "no" || dealmore == "No")
+                        {
+                            dealtloop = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("the option ypu picked is not valid please choose again");
+                            dealtloop = true;
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("the option ypu picked is not valid please choose again");
-                        endloop2 = true;
+                        Console.WriteLine("All cards have been dealt");
+                        dealtloop = true;
+
                     }
                 }
                 else
                 {
-                    Console.WriteLine("All cards have been dealt");
-                    endloop2 = true;
+                    Console.WriteLine("the number you entered was greater then the amount of cards, please try again");
+                     amount = int.Parse(Console.ReadLine());
                 }
-                
             }
+            
             return pack;
         }
            
