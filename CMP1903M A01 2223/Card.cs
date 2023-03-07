@@ -23,7 +23,7 @@ namespace CMP1903M_A01_2223
 
             set
             {
-                if (_value <= 14)
+                if (_value <= 13)
                 {
                     _value = value + 1;
                 }
